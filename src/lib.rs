@@ -17,6 +17,6 @@ cfg_if! {
 }
 
 #[wasm_bindgen]
-pub fn greet() -> String {
-    "Hello, wasm-worker!".to_string()
+pub fn fromRS() -> String {
+    "Rust".to_string()
 }

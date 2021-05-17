@@ -7,8 +7,18 @@ addEventListener('fetch', event => {
  * @param {Request} request
  */
 async function handleRequest(request) {
-    const { greet } = wasm_bindgen;
+    const { fromRS } = wasm_bindgen;
     await wasm_bindgen(wasm)
-    const greeting = greet()
-    return new Response(greeting, {status: 200})
+
+    if (request.url.endsWith("/js")) {
+        return new Response(fromJS(), { status: 200 })
+    } else if (request.url.endsWith("/rs")) {
+        return new Response(fromRS(), { status: 200 })
+    }
+
+    return new Response(null, { status: 404 })
+}
+
+function fromJS() {
+    return "JavaScript"
 }
