@@ -11,7 +11,7 @@ async function handleRequest(request) {
     await wasm_bindgen(wasm)
 
     if (request.url.endsWith("/js")) {
-        return new Response(fromJS(), { status: 200 })
+        return new Response(await fromJS(), { status: 200 })
     } else if (request.url.endsWith("/rs")) {
         return new Response(fromRS(), { status: 200 })
     }
@@ -19,6 +19,6 @@ async function handleRequest(request) {
     return new Response(null, { status: 404 })
 }
 
-function fromJS() {
-    return "JavaScript"
+async function fromJS() {
+    return await EXAMPLE_NS.get("foo")
 }
