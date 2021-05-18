@@ -23,9 +23,9 @@ pub async fn fromRS() -> Result<String, String> {
     utils::set_panic_hook();
     Ok(JsFuture::from(EXAMPLE_NS::get("foo"))
         .await
-        .unwrap()
+        .expect("custom panic 1")
         .as_string()
-        .unwrap())
+        .expect("custom panic 2"))
 }
 
 #[wasm_bindgen]
