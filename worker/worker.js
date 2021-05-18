@@ -13,7 +13,7 @@ async function handleRequest(request) {
     if (request.url.endsWith("/js")) {
         return new Response(await fromJS(), { status: 200 })
     } else if (request.url.endsWith("/rs")) {
-        return new Response(fromRS(), { status: 200 })
+        return new Response(await fromRS(), { status: 200 })
     }
 
     return new Response(null, { status: 404 })
